@@ -1,0 +1,370 @@
+/******************************************************************************
+START Glitch hello-app default styles
+
+The styles in this section do some minimal CSS resets, set default fonts and 
+colors, and handle the layout for our footer and "Remix on Glitch" button. If
+you're new to CSS they may seem a little complicated, but you can scroll down
+to this section's matching END comment to see page-specific styles.
+******************************************************************************/
+
+/* 
+  The style rules specify elements by type and by attributes such as class and ID
+  Each section indicates an element or elements, then lists the style properties to apply
+  See if you can cross-reference the rules in this file with the elements in index.html
+*/
+
+/* Our default values set as CSS variables */
+/*:root {
+  --color-bg: #69F7BE;
+  --color-text-main: #000000;
+  --color-primary: #FFFF00;
+  --wrapper-height: 87vh;
+  --image-max-width: 300px;
+  --image-margin: 3rem;
+  --font-family: "HK Grotesk";
+  --font-family-header: "HK Grotesk";
+}*/
+
+.navbar-custom {
+  background: navy;
+}
+
+.navbar-custom .logo img {
+  padding: 15px;
+  max-width: 100%;
+  height: auto;
+}
+
+.navbar-custom .logo {
+  float: left;
+  padding-right: 40px;
+  width: 100%;
+}
+
+.navbar-custom .navbar-toggle {
+  position: absolute;
+  right: 15px;
+  top: 15px;
+  border: 0px;
+  width: 50px;
+  margin: 0;
+}
+
+.navbar-custom .icon-bar {
+  width: 100%;
+  margin: 5px 0;
+  height: 3px;
+}
+
+@media (min-width: 768px) {
+  .navbar-custom.navbar {
+    height: 200px;
+  }
+
+  .navbar-custom .container {
+    position: relative;
+    overflow: visible;
+  }
+
+  .navbar-custom .navbar-nav {
+    padding: 125px 0 0;
+    text-align: center;
+    width: 100%;
+  }
+
+  .navbar-custom .navbar-nav > li {
+    display: inline-block;
+    float: none;
+  }
+
+  .navbar-custom .logo {
+    position: absolute;
+    background: #fff;
+    left: 0;
+    right: 0;
+    z-index: 5000;
+    display: block;
+    float: none;
+    padding: 0;
+  }
+
+  .navbar-custom .logo:before,
+  .navbar-custom .logo:after {
+    position: absolute;
+    background: #fff;
+    content: "";
+    left: -2000px;
+    width: 2000px;
+    bottom: 0;
+    display: block;
+    height: 100%;
+  }
+
+  .navbar-custom .logo:after {
+    left: auto;
+    right: -2000px;
+  }
+}
+/* Homepage */
+* {
+  box-sizing: border-box;
+}
+
+/* Slideshow container */
+.slideshow-container {
+  margin-left: auto;
+  margin-right: auto;
+  height: 300px;
+  width: 200px;
+  margin-top: 150px;
+  position: relative;
+}
+
+/* Hide the images by default */
+.mySlides {
+  display: ;
+}
+
+/* Next & previous buttons */
+.prev,
+.next {
+  cursor: pointer;
+  position: absolute;
+  top: 50%;
+  width: auto;
+  margin-top: -22px;
+  padding: 16px;
+  color: white;
+  font-weight: bold;
+  font-size: 18px;
+  transition: 0.6s ease;
+  border-radius: 0 3px 3px 0;
+  user-select: none;
+}
+
+/* Position the "next button" to the right */
+.next {
+  right: 0;
+  border-radius: 3px 0 0 3px;
+}
+
+/* On hover, add a black background color with a little bit see-through */
+.prev:hover,
+.next:hover {
+  background-color: rgba(0, 0, 0, 0.8);
+}
+
+/* Caption text */
+.text {
+  color: #f2f2f2;
+  font-size: 15px;
+  padding: 8px 12px;
+  position: absolute;
+  bottom: 8px;
+  width: 100%;
+  text-align: center;
+}
+
+/* Number text (1/3 etc) */
+.numbertext {
+  color: #f2f2f2;
+  font-size: 12px;
+  padding: 8px 12px;
+  position: absolute;
+  top: 0;
+}
+
+/* The dots/bullets/indicators */
+.dot {
+  cursor: pointer;
+  height: 15px;
+  width: 15px;
+  margin: 0 2px;
+  background-color: #bbb;
+  border-radius: 50%;
+  display: inline-block;
+  transition: background-color 0.6s ease;
+}
+
+.active,
+.dot:hover {
+  background-color: #717171;
+}
+
+/* Fading animation */
+.fade {
+  -webkit-animation-name: fade;
+  -webkit-animation-duration: 1.5s;
+  animation-name: fade;
+  animation-duration: 1.5s;
+}
+
+@-webkit-keyframes fade {
+  from {
+    opacity: 0.4;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes fade {
+  from {
+    opacity: 0.4;
+  }
+  to {
+    opacity: 1;
+  }
+}
+/* Claire's section */
+
+.about_Header {
+  text-align: center;
+  color: rgb(236, 45, 1);
+}
+
+.about_Bio_Header {
+  text-align: center;
+  font-family: "Zen Tokyo Zoo", cursive;
+  font-size: 65px;
+}
+.about_Bio_Text {
+  color: rgb(50, 205, 50);
+  margin-top: 50px;
+  font-size: 23px;
+  font-family: 'Didact Gothic', calibri;
+}
+
+.about_Left_Image {
+  padding: 20px;
+  float: left;
+  width:350px;
+ 
+}
+
+.about_Right_Image {
+  padding: 20px;
+  float: right;
+  width:350px;
+  
+}
+
+.about_Left {
+  margin-top:200px;
+  margin-right:500px;
+  
+  
+}
+
+.about_Right {
+  margin-top:200px;
+  margin-left:500px;
+  
+  
+}
+
+/* #Ryan_Text{
+margin-top:50px;
+color:green;
+
+
+  
+}  */
+
+/*  
+
+#about_Ryan {
+  margin-top: 200px;
+  margin-right: 500px;
+}
+
+#about_Nick {
+  margin-top: 200px;
+  margin-left: 500px;
+}
+
+/*  #Nick_Text{ 
+  color:red;
+  margin-top:50px;
+  
+} */
+/*  
+#about_Cachey {
+  margin-top: 200px;
+  margin-right: 500px;
+}
+
+#about_Andrew {
+  margin-top: 200px;
+  margin-left: 550px;
+}
+
+#about_Alex {
+  margin-top: 200px;
+  margin-left: 500px;
+}
+
+#about_Claire {
+  margin-top: 200px;
+  margin-right: 500px;
+}
+
+#about_Yasin {
+  margin-top: 200px;
+  margin-right: 500px;
+}
+
+#about_Lisa {
+  margin-top: 200px;
+  margin-left: 500px;
+}
+
+#about_Kino {
+  margin-top: 200px;
+  margin-right: 500px;
+}
+*/
+
+model-viewer {
+  width: 100%;
+  height: 800px;
+}
+
+.about_MarketPlace {
+  text-align: center;
+}
+
+/* .grid-container{
+  width:75%;
+  margin-left:auto;
+  margin-righ:auto;
+  display:block;
+  background-color: blue;
+} */
+
+.button {
+  background-color: #4CAF50;
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: block;
+  font-size: 25px;
+  margin: 4px 2px;
+  cursor: pointer;
+  font-family: 'Zen Tokyo Zoo';
+  margin-left: 500px;
+  margin-right: 500px;
+}
+.button:hover {
+  background-color: lightgreen;
+}
+.static {
+  position:absolute;
+  background: white;
+}
+
+.static:hover {
+  opacity:0;
+}

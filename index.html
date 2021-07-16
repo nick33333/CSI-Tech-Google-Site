@@ -1,0 +1,562 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Home</title>
+    <link
+      rel="shortcut icon"
+      type="image/png"
+      href="https://cdn.glitch.com/6ca40ca6-c18e-443b-ad74-f221a69e4e66%2FScreen%20Shot%202021-07-07%20at%2010.48.37%20AM.png?v=1625680144736"
+    />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <script
+      type="module"
+      src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"
+    ></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Zen+Loop&family=Zen+Tokyo+Zoo&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Didact+Gothic"/>
+    
+    
+    <style>
+      body {
+        background-color: lightblue;
+      }
+      /* Navbar */
+      /* Add a black background color to the top navigation */
+      .topnav {
+        background-color: black;
+        overflow: hidden;
+      }
+
+      .topnav-right {
+        float: right;
+      }
+
+      /* Style the links inside the navigation bar */
+      .topnav a {
+        float: left;
+        display: block;
+        color: #f2f2f2;
+        text-align: center;
+        padding: 14px 40px;
+        text-decoration: none;
+        font-size: 25px;
+        font-family: 'Didact Gothic';
+        border-bottom: 3px solid transparent;
+      }
+
+      /* Add an active class to highlight the current page */
+      .active {
+        background-color: #04AA6D;
+        color: white;
+      }
+
+      /* Hide the link that should open and close the topnav on small screens */
+      .topnav .icon {
+        display: none;
+      }
+
+      /* Dropdown container - needed to position the dropdown content */
+      .dropdown {
+        float: right;
+        overflow: hidden;
+      }
+
+      /* Style the dropdown button to fit inside the topnav */
+      .dropdown .dropbtn {
+        font-size: 20px;
+        border: none;
+        outline: none;
+        color: #f9f9f9;
+        padding: 14px 50px;
+        background-color: inherit;
+        font-family: inherit;
+        margin: 0;
+      }
+
+      /* Style the dropdown content (hidden by default) */
+      .dropdown-content {
+        display: none;
+        position: absolute;
+        background-color: #f9f9f9;
+        min-width: 160px;
+        box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+        z-index: 1;
+      }
+
+      /* Style the links inside the dropdown */
+      .dropdown-content a {
+        float: none;
+        color: black;
+        padding: 12px 16px;
+        text-decoration: none;
+        display: block;
+        text-align: right;
+      }
+
+      /* Add a dark background on topnav links and the dropdown button on hover */
+      .topnav a:hover {
+        /*         background-color: #555; */
+        color: white;
+        border-bottom: 3px solid white;
+      }
+      
+      .topnav a.inactive {
+        border-bottom: 3px solid transparent;
+      }
+
+      /* Add a grey background to dropdown links on hover */
+      .dropdown-content a:hover {
+        background-color: #ddd;
+        color: black;
+      }
+
+      /* Show the dropdown menu when the user moves the mouse over the dropdown button */
+      .dropdown:hover .dropdown-content {
+        display: block;
+      }
+
+      /* When the screen is less than 600 pixels wide, hide all links, except for the first one ("Home"). Show the link that contains should open and close the topnav (.icon) */
+      @media screen and (max-width: 600px) {
+        .topnav a:not(:first-child),
+        .dropdown .dropbtn {
+          display: none;
+        }
+        .topnav a.icon {
+          float: right;
+          display: block;
+        }
+      }
+
+      /* The "responsive" class is added to the topnav with JavaScript when the user clicks on the icon. This class makes the topnav look good on small screens (display the links vertically instead of horizontally) */
+      @media screen and (max-width: 600px) {
+        .topnav.responsive {
+          position: relative;
+        }
+        .topnav.responsive a.icon {
+          position: absolute;
+          right: 0;
+          top: 0;
+        }
+        .topnav.responsive a {
+          float: none;
+          display: block;
+          text-align: left;
+        }
+        .topnav.responsive .dropdown {
+          float: none;
+        }
+        .topnav.responsive .dropdown-content {
+          position: relative;
+        }
+        .topnav.responsive .dropdown .dropbtn {
+          display: block;
+          width: 100%;
+          text-align: left;
+        }
+      }
+      /* Container */
+      * {
+        box-sizing: border-box;
+      }
+      body {
+        font-family: Verdana, sans-serif;
+        margin: 0;
+      }
+      .mySlides {
+        display: none;
+      }
+      img {
+        vertical-align: middle;
+      }
+
+      /* Slideshow container */
+      .slideshow-container {
+        max-width: 1000px;
+        height: 120%;
+        position: relative;
+        margin: auto;
+        background-color: lightblue;
+      }
+
+      /* Next & previous buttons */
+      .prev,
+      .next {
+        cursor: pointer;
+        position: absolute;
+        top: 50%;
+        width: auto;
+        padding: 16px;
+        margin-top: -22px;
+        color: white;
+        font-weight: bold;
+        font-size: 18px;
+        transition: 0.6s ease;
+        border-radius: 0 3px 3px 0;
+        user-select: none;
+      }
+
+      /* Position the "next button" to the right */
+      .next {
+        right: 0;
+        border-radius: 3px 0 0 3px;
+      }
+
+      /* On hover, add a black background color with a little bit see-through */
+      .prev:hover,
+      .next:hover {
+        background-color: rgba(0, 0, 0, 0.8);
+      }
+
+      /* Caption text */
+      .text {
+        color: #f2f2f2;
+        font-size: 15px;
+        padding: 8px 12px;
+        position: absolute;
+        bottom: 8px;
+        width: 100%;
+        text-align: center;
+      }
+
+      /* Number text (1/3 etc) */
+      .numbertext {
+        color: #f2f2f2;
+        font-size: 12px;
+        padding: 8px 12px;
+        position: absolute;
+        top: 0;
+      }
+
+      /* The dots/bullets/indicators */
+      .dot {
+        cursor: pointer;
+        height: 15px;
+        width: 15px;
+        margin: 0 2px;
+        background-color: #bbb;
+        border-radius: 50%;
+        display: inline-block;
+        transition: background-color 0.6s ease;
+      }
+
+      .active,
+      .dot:hover {
+        background-color: #717171;
+      }
+
+      /* Fading animation */
+      .fade {
+        -webkit-animation-name: fade;
+        -webkit-animation-duration: 1.5s;
+        animation-name: fade;
+        animation-duration: 1.5s;
+      }
+
+      @-webkit-keyframes fade {
+        from {
+          opacity: 0.4;
+        }
+        to {
+          opacity: 1;
+        }
+      }
+
+      @keyframes fade {
+        from {
+          opacity: 0.4;
+        }
+        to {
+          opacity: 1;
+        }
+      }
+
+      /* On smaller screens, decrease text size */
+      @media only screen and (max-width: 300px) {
+        .prev,
+        .next,
+        .text {
+          font-size: 11px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Navbar   -->
+    <div class="topnav" id="myTopnav">
+      <a class="inactive" href="index.html" style="padding:0px;">
+        <img
+          style="width:30%; padding-left:0px; padding-right:0px; float:left;"
+          src="https://cdn.glitch.com/6ca40ca6-c18e-443b-ad74-f221a69e4e66%2Ffront1-nobackground.png?v=1625590970352"
+        />
+      </a>
+
+      <!--       <a class="navbar-brand" href="#">
+        <img src="https://cdn.glitch.com/6ca40ca6-c18e-443b-ad74-f221a69e4e66%2Ffront1-nobackground.png?v=1625590970352" width="30" height="30" alt=""
+        style="width:10%; height: 10%; padding-left:0px;padding-right:0px; float:left">
+      </a>     -->
+
+      <div class="topnav-right">
+<!--         <div class="dropdown">
+          <button style="font-family: Georgia, Sans serif;" class="dropbtn">
+            About
+            <i class="fa fa-caret-down"></i>
+          </button>
+          <div class="dropdown-content">
+            <a href="aboutUs.html">About Us</a>
+            <a href="aboutPages.html">About the Site</a>
+            <a href="credits.html">Credits</a>
+          </div>
+        </div> -->
+        <a href="javascript:void(0);" class="icon" onclick="myFunction()">&#9776;</a>
+        <a href="marketplace.html">Marketplace</a>
+        <a href="aboutUs.html">About Us</a>
+        <a href="aboutPages.html">About the Site</a>
+        <a href="credits.html">Credits</a>
+      </div>
+    </div>
+
+    <!--   Begin Text   -->
+    <h1
+      style="text-align:center; font-family: 'Zen Tokyo Zoo', cursive; font-size:75px;"
+    >
+      Welcome to the NFT Marketplace!
+    </h1>
+    <!-- /.navbar-collapse -->
+    <div class="slideshow-container">
+      <div class="mySlides fade">
+        <div class="numbertext">1 / 7</div>
+        <model-viewer
+          style=" display:block; margin-left:auto; margin-right:auto; width:500px; height:800px;"
+          src="https://cdn.glitch.com/6ca40ca6-c18e-443b-ad74-f221a69e4e66%2Fsucc%20copy.glb?v=1625676687745"
+          alt="Nick's glb model"
+          environment-image=""
+          exposure=".5"
+          auto-rotate
+          camera-controls
+          shadow-intensity="1"
+        ></model-viewer>
+        <div
+          class="text"
+          style="font-family: 'Zen Loop', cursive; font-size:large;"
+        >
+          "Plant Mom" - Claire Beaudin
+        </div>
+      </div>
+
+      <div class="mySlides fade">
+        <div class="numbertext">2 / 7</div>
+        <model-viewer
+          style=" display:block;margin-left:auto; margin-right:auto; width:500px; height:800px;"
+          src="https://cdn.glitch.com/4cf95958-06bb-4288-81af-48a628a4ebfd%2FNicks_1st_model.glb?v=1624446900815"
+          alt="Nick's glb model"
+          environment-image=""
+          exposure=".5"
+          auto-rotate
+          camera-controls
+          shadow-intensity="1"
+        ></model-viewer>
+        <div
+          class="text"
+          style="font-family: 'Zen Loop', cursive; font-size:large;"
+        >
+          "Tokens" - Nicholas Chan
+        </div>
+      </div>
+
+      <div class="mySlides fade">
+        <div class="numbertext">3 / 7</div>
+        <model-viewer
+          style="display:block; margin-left:auto; margin-right:auto; width:500px; height:800px;"
+          src="https://cdn.glitch.com/6ca40ca6-c18e-443b-ad74-f221a69e4e66%2FProject%20Name%20(1).glb?v=1625713465165"
+          alt="NFT Ryan glb model"
+          ar
+          ar-modes="webxr scene-viewer quick-look"
+          environment-image="neutral"
+          exposure="0.5"
+          auto-rotate
+          camera-controls
+          shadow-intensity="0.6"
+        ></model-viewer>
+        <div
+          class="text"
+          style="font-family: 'Zen Loop', cursive; font-size:large;"
+        >
+          "Mountain Dew Colors" - Ryan Javier
+        </div>
+      </div>
+
+      <div class="mySlides fade">
+        <div class="numbertext">4 / 7</div>
+        <model-viewer
+          style="display:block; margin-left:auto; margin-right:auto; width:500px; height:800px;"
+          src="https://cdn.glitch.com/4cf95958-06bb-4288-81af-48a628a4ebfd%2Fsucc%20copy.glb?v=1624475970691"
+          alt="A Blue Torch (no texture)"
+          ar
+          ar-modes="webxr scene-viewer quick-look"
+          environment-image="neutral"
+          exposure="0.5"
+          auto-rotate
+          camera-controls
+          shadow-intensity="1"
+        ></model-viewer>
+        <div
+          class="text"
+          style="font-family: 'Zen Loop', cursive; font-size:large;"
+        >
+          "Cactus Cooler" - Claire Beaudin
+        </div>
+      </div>
+
+      <div class="mySlides fade">
+        <div class="numbertext">5 / 7</div>
+        <model-viewer
+          style="display:block; margin-left:auto; margin-right:auto;  width:500px; height:800px;"
+          src="https://cdn.glitch.com/6ca40ca6-c18e-443b-ad74-f221a69e4e66%2Fbzzhelp.glb?v=1625675572095"
+          alt="bzz"
+          ar
+          ar-modes="webxr scene-viewer quick-look"
+          environment-image="neutral"
+          auto-rotate
+          camera-controls
+        ></model-viewer>
+        <div
+          class="text"
+          style="font-family: 'Zen Loop', cursive; font-size:large;"
+        >
+          "Buzzy Bee" - Claire Beaudin
+        </div>
+      </div>
+
+      
+      <div class="mySlides fade">
+        <div class="numbertext">6 / 7</div>
+        <model-viewer
+          style="display:block; margin-left:auto; margin-right:auto;  width:500px; height:800px;"
+          src="https://cdn.glitch.com/6ca40ca6-c18e-443b-ad74-f221a69e4e66%2FAlex-NFT-Art.glb?v=1626073333208"
+          alt="Alex's NFT Model"
+          ar
+          ar-modes="webxr scene-viewer quick-look"
+          environment-image="neutral"
+          auto-rotate
+          camera-controls
+        ></model-viewer>
+        <div
+          class="text"
+          style="font-family: 'Zen Loop', cursive; font-size:large;"
+        >
+          "Rise and Shine" - Alex Toohey
+        </div>
+      </div>
+        
+      
+      
+      <div class="mySlides fade">
+        <div class="numbertext">6 / 7</div>
+        <model-viewer
+          style="display:block; margin-left:auto; margin-right:auto;  width:500px; height:800px;"
+          src="https://cdn.glitch.com/6ca40ca6-c18e-443b-ad74-f221a69e4e66%2FAmberior%20Design.glb?v=1626194553350"
+          alt="Amberior Design"
+          ar
+          ar-modes="webxr scene-viewer quick-look"
+          environment-image="neutral"
+          auto-rotate
+          camera-controls
+        ></model-viewer>
+        <div
+          class="text"
+          style="font-family: 'Zen Loop', cursive; font-size:large;"
+        >
+          "Amberior Design" - Lisa Kwong
+        </div>
+      </div>
+      <div class="mySlides fade">
+        <div class="numbertext">7 / 7</div>
+        <!--  CHANGE EXPOSURE FOR LIGHT  -->
+        <model-viewer
+          style="display:block; margin-left: auto; margin-right: auto;  width:500px; height:800px;"
+          src="https://cdn.glitch.com/4cf95958-06bb-4288-81af-48a628a4ebfd%2FAmogus.glb?v=1624469743141"
+          alt="Amogus glb model"
+          ar
+          ar-modes="webxr scene-viewer quick-look"
+          environment-image="neutral"
+          exposure="0.5"
+          shadow-intensity="1"
+          auto-rotate
+          camera-controls
+        ></model-viewer>
+        <div
+          class="text"
+          style="font-family: 'Zen Loop', cursive; font-size:large;"
+        >
+          "Amogus" - Ryan Javier
+        </div>
+      </div>
+      <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+      <a class="next" onclick="plusSlides(1)">&#10095;</a>
+    </div>
+    <br />
+
+    <div style="text-align:center">
+      <span class="dot" onclick="currentSlide(1)"></span>
+      <span class="dot" onclick="currentSlide(2)"></span>
+      <span class="dot" onclick="currentSlide(3)"></span>
+      <span class="dot" onclick="currentSlide(4)"></span>
+      <span class="dot" onclick="currentSlide(5)"></span>
+      <span class="dot" onclick="currentSlide(6)"></span>
+      <span class="dot" onclick="currentSlide(7)"></span>
+    </div>
+    <a href="index.html"
+      ><img
+        style="display: block; margin-left:auto; margin-right:auto; margin-top: 10px; width:5%; margin-bottom: 10px;"
+        src="https://cdn.glitch.com/6ca40ca6-c18e-443b-ad74-f221a69e4e66%2Ffront1-nobackground.png?v=1625590970352"
+        alt="Logo"
+    /></a>
+    <h1
+      style="margin-left:200px; margin-right:200px;background-color:lightblue; text-align:center;font-family: 'Zen Loop', cursive; font-size: medium;"
+    >
+      Brought to you by Google CSI Tech Cohort 2021©
+    </h1>
+    <!--   Javascript   -->
+    <script>
+      var slideIndex = 1;
+      showSlides(slideIndex);
+
+      // Next/previous controls
+      function plusSlides(n) {
+        showSlides((slideIndex += n));
+      }
+
+      // Thumbnail image controls
+      function currentSlide(n) {
+        showSlides((slideIndex = n));
+      }
+
+      function showSlides(n) {
+        var i;
+        var slides = document.getElementsByClassName("mySlides");
+        var dots = document.getElementsByClassName("dot");
+        if (n > slides.length) {
+          slideIndex = 1;
+        }
+        if (n < 1) {
+          slideIndex = slides.length;
+        }
+        for (i = 0; i < slides.length; i++) {
+          slides[i].style.display = "none";
+        }
+        for (i = 0; i < dots.length; i++) {
+          dots[i].className = dots[i].className.replace(" active", "");
+        }
+        slides[slideIndex - 1].style.display = "block";
+        dots[slideIndex - 1].className += " active";
+      }
+    </script>
+  </body>
+</html>

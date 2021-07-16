@@ -1,0 +1,359 @@
+ <!DOCTYPE html>
+<html lang="en">
+<!--   Head   -->
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" href="https://glitch.com/favicon.ico" />
+    <title>Meet the Team</title>
+    <link rel="stylesheet" href="/style.css" />
+    <script src="/script.js" defer></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Zen+Loop&family=Zen+Tokyo+Zoo&display=swap" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Didact+Gothic"/>
+    <style>
+      body{
+        background-color:  #946B45;
+      }
+      
+      
+      .Spacer100px {
+  height: 100px;
+  border-style: solid;
+  border-width: 0px;
+	border-color: green;
+}
+          /* Navbar */
+      /* Add a black background color to the top navigation */
+      .topnav {
+        background-color: black;
+        overflow: hidden;
+      }
+      
+      .topnav-right {
+        float: right;
+      }
+
+      /* Style the links inside the navigation bar */
+      .topnav a {
+        float: left;
+        display: block;
+        color: #f2f2f2;
+        text-align: center;
+        padding: 14px 40px;
+        text-decoration: none;
+        font-size: 25px;
+        font-family: 'Didact Gothic';
+        border-bottom: 3px solid transparent;
+      }
+
+      /* Add an active class to highlight the current page */
+      .active {
+        background-color: #04AA6D;
+        color: white;
+      }
+
+      /* Hide the link that should open and close the topnav on small screens */
+      .topnav .icon {
+        display: none;
+      }
+
+      /* Dropdown container - needed to position the dropdown content */
+      .dropdown {
+        float: left;
+        overflow: hidden;
+      }
+
+      /* Style the dropdown button to fit inside the topnav */
+      .dropdown .dropbtn {
+        font-size: 20px;
+        border: none;
+        outline: none;
+        color: white;
+        padding: 14px 16px;
+        background-color: inherit;
+        font-family: inherit;
+        margin: 0;
+      }
+
+      /* Style the dropdown content (hidden by default) */
+      .dropdown-content {
+        display: none;
+        position: absolute;
+        background-color: #f9f9f9;
+        min-width: 160px;
+        box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+        z-index: 1;
+      }
+
+      /* Style the links inside the dropdown */
+      .dropdown-content a {
+        float: none;
+        color: black;
+        padding: 12px 16px;
+        text-decoration: none;
+        display: block;
+        text-align: left;
+      }
+
+      /* Add a dark background on topnav links and the dropdown button on hover */
+      .topnav a:hover,
+      .dropdown:hover .dropbtn {
+/*         background-color: #555; */
+        color: white;
+        border-bottom: 3px solid white;
+      }
+      
+      .topnav a.inactive {
+        border-bottom: 3px solid transparent;
+      }
+
+      /* Add a grey background to dropdown links on hover */
+      .dropdown-content a:hover {
+        background-color: #ddd;
+        color: black;
+      }
+
+      /* Show the dropdown menu when the user moves the mouse over the dropdown button */
+      .dropdown:hover .dropdown-content {
+        display: block;
+      }
+
+      /* When the screen is less than 600 pixels wide, hide all links, except for the first one ("Home"). Show the link that contains should open and close the topnav (.icon) */
+      @media screen and (max-width: 600px) {
+        .topnav a:not(:first-child),
+        .dropdown .dropbtn {
+          display: none;
+        }
+        .topnav a.icon {
+          float: right;
+          display: block;
+        }
+      }
+
+      /* The "responsive" class is added to the topnav with JavaScript when the user clicks on the icon. This class makes the topnav look good on small screens (display the links vertically instead of horizontally) */
+      @media screen and (max-width: 600px) {
+        .topnav.responsive {
+          position: relative;
+        }
+        .topnav.responsive a.icon {
+          position: absolute;
+          right: 0;
+          top: 0;
+        }
+        .topnav.responsive a {
+          float: none;
+          display: block;
+          text-align: left;
+        }
+        .topnav.responsive .dropdown {
+          float: none;
+        }
+        .topnav.responsive .dropdown-content {
+          position: relative;
+        }
+        .topnav.responsive .dropdown .dropbtn {
+          display: block;
+          width: 100%;
+          text-align: left;
+        }
+      }
+    </style>
+  </head>
+<!--  Body  -->
+  <body>
+   <!-- Navbar   -->
+    <div class="topnav" id="myTopnav">
+      <a class="inactive" href="index.html" style="padding:0px;">
+        <img
+          style="width:30%; padding-left:0px; padding-right:0px; float:left"
+          src="https://cdn.glitch.com/6ca40ca6-c18e-443b-ad74-f221a69e4e66%2Ffront1-nobackground.png?v=1625590970352"
+        />
+      </a>
+      <div class="topnav-right">
+        <a href="javascript:void(0);" class="icon" onclick="myFunction()">&#9776;</a>
+        <a href="marketplace.html">Marketplace</a>
+        <a href="aboutUs.html">About Us</a>
+        <a href="aboutPages.html">About the Site</a>
+        <a href="credits.html">Credits</a>
+      </div>
+    </div>
+       
+<!-- Begin Header -->
+    <header class="about_Header">
+      <h1 style="font-family: 'Zen Tokyo Zoo', cursive; font-size: 100px;">
+        About The Team
+      </h1>
+    </header>
+    
+    <div class="about_Left">
+      <p>
+        <img   src="https://cdn.glitch.com/6ca40ca6-c18e-443b-ad74-f221a69e4e66%2FIMG_0105%20copy.JPG?v=1626193522556" alt="Ryan" class="about_Left_Image" >
+        <h2 class="about_Bio_Header">
+          Ryan Javier
+        </h2>
+        <div class="about_Bio_Text">
+        Hi! My name is Ryan and I’m an incoming senior at Ruth Asawa SOTA. I love taking long road trips and singing with my guitar. 
+          As a hobby, I make films, I’ll do some art here and there, and I code! I enjoy doing html and css, especially when it comes to graphic design and figuring out the aesthetics of a website. 
+          You can see some of my work on this website!
+
+        </div>
+      </p>
+    </div>
+    
+    <div class="about_Right">
+      <p>
+        <img  src="https://cdn.glitch.com/6ca40ca6-c18e-443b-ad74-f221a69e4e66%2FNick-Photo.jpg?v=1626111224916" alt="Nick" class="about_Right_Image" >
+        <h2 class="about_Bio_Header">
+          Nicholas Chan
+      </h2>
+        <div class="about_Bio_Text">
+         Hi, I’m Nick! I am currently a junior at UC Santa Cruz pursuing a major in Biomolecular Engineering with a concentration in Bioinformatics. 
+          My dream job is working as a data scientist at an established biotech company, preferably around the field of genetics and precision medicine, but before then, I have the more immediate goal of preparing myself for a PhD program in either Bioinformatics or Data Science. 
+          Here at the Community Safety Initiative’s Tech Cohort Supported by Google, I have had the opportunity as a fellow to work with interns from various backgrounds on topics such as job readiness, analysis of the tech industry,web design, and 3D modelling. 
+          I found myself working as a fellow from my own experiences as an intern with Opportunities for All, an initiative that I believe has greatly shaped my sense of professionalism to this day. From the time that I have had the privilege to spend with this cohort, I have become well acquainted and impressed with everyone’s cooperation, work, and progress.
+      </div>
+        
+      </p>
+  
+   </div>
+
+    <div class="about_Left">
+      <p>
+        <img  src="https://cdn.glitch.com/6ca40ca6-c18e-443b-ad74-f221a69e4e66%2FClaire.jpg?v=1626113810744" alt="Claire" class="about_Left_Image" >
+        <h2 class="about_Bio_Header">
+          Claire Beaudin
+      </h2>
+        <div class="about_Bio_Text">
+           Hi! 
+           My name is Claire, and I’m an incoming freshman at UC Berkeley. I plan on majoring in Computer Science with a focus on Electrical Engineering in my upper division classes. 
+           During my time at Berkeley, I also intend to explore a few of my other interests through a goal of receiving the Berkeley Certificate in Design Innovation. 
+           In my spare time, I enjoy caring for my succulents and cacti, watching movies, playing board games and video games, and more.
+
+      </div>
+        
+      </p>
+  
+   </div>
+
+
+    
+      <div class="about_Right" >
+      <p>
+        <img src="https://cdn.glitch.com/6ca40ca6-c18e-443b-ad74-f221a69e4e66%2FAlex's-Headshot1.jpg?v=1626112000809" alt="Alex" class="about_Right_Image" >
+        <h2 class="about_Bio_Header">
+          Alex Toohey
+      </h2>
+        <div class="about_Bio_Text">
+         Hi! My name is Alex, and I am an upcoming sophomore at Lowell High School. I have lived in SF all my life and in my free time I like to play sports, play video games with friends, and play the piano. 
+          I have always been interested in tech and this internship has helped me learn more about the tech industry, get an idea of how a big tech company like Google operates, get more comfortable working on websites in a team setting, 
+           sharpen up my HTML and CSS skills, and learn more about NFTs and how to make them. I am currently in the web design team of this Google CSI Tech Cohort.
+
+      </div>
+      </p>
+    </div>
+
+     <div class="about_Left" >
+      <p>
+        <img  src="https://cdn.glitch.com/6ca40ca6-c18e-443b-ad74-f221a69e4e66%2FLisa-Photo.jpg?v=1626112492629" alt="Lisa" class="about_Left_Image" >
+        <h2 class="about_Bio_Header">
+          Lisa Kwong
+      </h2>
+        <div class="about_Bio_Text">
+      Hi, my name is Lisa Kwong. I am a sophomore at San Francisco State University majoring in Child Adolescents Development with a double major in Biology. 
+          During my free time I like to explore the city and try out  new food places, and go on adventures with my friends. Currently, this summer I am part of the NFT team with CSI Google. 
+          I made an interior design of a living room using the Vectary app,YouTube sign, boba milk tea, and the FAANG logos for the tech company. 
+
+
+      </div>
+      </p>
+    </div>
+
+       <div class="about_Right" >
+      <p>
+        <img  src="https://cdn.glitch.com/6ca40ca6-c18e-443b-ad74-f221a69e4e66%2FAndrew-Photo.jpg?v=1626115785517" alt="Andrew" class="about_Right_Image" >
+        <h2 class="about_Bio_Header">
+          Andrew Vuong
+      </h2>
+        <div class="about_Bio_Text">
+             Hello!
+          My name is Andrew Vuong and I am a rising sophomore at CCSF majoring in Computer Science, aspiring to transfer to UC Davis as a Cognitive Science major with a minor in Computer Science. 
+          In my free time, I usually exercise, do dragon boat, and play games such as League of Legends and Valorant with friends.
+          What I want to do in the future is to be a software engineer for a FAANG company and  Currently, I am in the web design team of this Google CSI Cohort.
+
+      </div>
+      </p>
+    </div>
+    
+<div class="Spacer100px"></div>
+
+
+     
+ <div class="about_Left" >
+      <p>
+        <img  src="https://cdn.glitch.com/6ca40ca6-c18e-443b-ad74-f221a69e4e66%2Ffake_headshot.jpg?v=1625590733650" alt="Yasin" class="about_Left_Image" >
+        <h2 class="about_Bio_Header" >
+          Yasin Shaikh
+      </h2>
+        <div class="about_Bio_Text">
+           
+         
+          
+
+      </div>
+        
+      </p>
+  
+   </div>
+                   
+<div class="Spacer100px"></div>
+
+ <div class="about_Right" >
+      <p>
+        <img src="https://cdn.glitch.com/6ca40ca6-c18e-443b-ad74-f221a69e4e66%2Ffake_headshot.jpg?v=1625590733650" alt="Cachey" class="about_Right_Image" >
+        <h2 class="about_Bio_Header">
+          Cachey Tatum
+      </h2>
+        <div class="about_Bio_Text">
+     
+
+      </div>
+      </p>
+    </div>
+       
+<div class="Spacer100px"></div>
+
+ <div class="about_Left">
+      <p>
+        <img  src="https://cdn.glitch.com/6ca40ca6-c18e-443b-ad74-f221a69e4e66%2Ffake_headshot.jpg?v=1625590733650" alt="Kino" class="about_Left_Image" >
+        <h2 class="about_Bio_Header">
+          Kino Clark
+      </h2>
+        <div class="about_Bio_Text">
+         
+          
+
+      </div>
+        
+      </p>
+  
+   </div>
+
+
+<div class="Spacer100px"></div>
+
+<div class="Spacer100px"></div>
+
+
+<div style="display: block; margin-top: 25px;">
+  <br>
+    <a href="index.html"><img style="display:block; margin-left:auto; margin-right:auto; margin-top: 10px; width:5%; margin-bottom: 10px;" src="https://cdn.glitch.com/6ca40ca6-c18e-443b-ad74-f221a69e4e66%2Ffront1-nobackground.png?v=1625590970352" alt="Logo"></a>
+    <h1 style="margin-left:200px; margin-right:200px;background-color:white; opacity:0.5; text-align:center;font-family: 'Zen Loop', cursive; font-size: medium;">
+      Brought to you by Google CSI Tech Cohort 2021©
+    </h1>  
+</div>
+  </body>
+</html>

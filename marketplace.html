@@ -1,0 +1,1184 @@
+ <!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" href="https://glitch.com/favicon.ico" />
+    <title>Marketplace</title>
+    <script src="/script.js" defer></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <script
+      type="module"
+      src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"
+    ></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Zen+Loop&family=Zen+Tokyo+Zoo&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Didact+Gothic"/>
+    <style>
+      body {
+        margin:0;
+        background-color: lightgreen;
+      }
+      /* Add a black background color to the top navigation */
+      .topnav {
+        background-color: black;
+        overflow: hidden;
+      }
+      
+      .topnav-right {
+        float: right;
+      }
+
+      /* Style the links inside the navigation bar */
+      .topnav a {
+        float: left;
+        display: block;
+        color: #f2f2f2;
+        text-align: center;
+        padding: 14px 40px;
+        text-decoration: none;
+        font-size:25px;
+        font-family: 'Didact Gothic';
+        border-bottom: 3px solid transparent;
+      }
+
+      /* Add an active class to highlight the current page */
+      .active {
+        background-color: #04AA6D;
+        color: white;
+      }
+
+      /* Hide the link that should open and close the topnav on small screens */
+      .topnav .icon {
+        display: none;
+      }
+
+      /* Dropdown container - needed to position the dropdown content */
+      .dropdown {
+        float: left;
+        overflow: hidden;
+      }
+
+      /* Style the dropdown button to fit inside the topnav */
+      .dropdown .dropbtn {
+        font-size: 20px;
+        border: none;
+        outline: none;
+        color: white;
+        padding: 14px 16px;
+        background-color: inherit;
+        font-family: inherit;
+        margin: 0;
+      }
+
+      /* Style the dropdown content (hidden by default) */
+      .dropdown-content {
+        display: none;
+        position: absolute;
+        background-color: #f9f9f9;
+        min-width: 160px;
+        box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+        z-index: 1;
+      }
+
+      /* Style the links inside the dropdown */
+      .dropdown-content a {
+        float: none;
+        color: black;
+        padding: 12px 16px;
+        text-decoration: none;
+        display: block;
+        text-align: left;
+      }
+
+      /* Add a dark background on topnav links and the dropdown button on hover */
+      .topnav a:hover,
+      .dropdown:hover .dropbtn {
+        /*         background-color: #555; */
+        color: white;
+        border-bottom: 3px solid white;
+      }
+      
+      .topnav a.inactive {
+        border-bottom: 3px solid transparent;
+      }
+
+
+      /* Add a grey background to dropdown links on hover */
+      .dropdown-content a:hover {
+        background-color: #ddd;
+        color: black;
+      }
+
+      /* Show the dropdown menu when the user moves the mouse over the dropdown button */
+      .dropdown:hover .dropdown-content {
+        display: block;
+      }
+
+      /* When the screen is less than 600 pixels wide, hide all links, except for the first one ("Home"). Show the link that contains should open and close the topnav (.icon) */
+      @media screen and (max-width: 600px) {
+        .topnav a:not(:first-child),
+        .dropdown .dropbtn {
+          display: none;
+        }
+        .topnav a.icon {
+          float: right;
+          display: block;
+        }
+      }
+
+      /* The "responsive" class is added to the topnav with JavaScript when the user clicks on the icon. This class makes the topnav look good on small screens (display the links vertically instead of horizontally) */
+      @media screen and (max-width: 600px) {
+        .topnav.responsive {
+          position: relative;
+        }
+        .topnav.responsive a.icon {
+          position: absolute;
+          right: 0;
+          top: 0;
+        }
+        .topnav.responsive a {
+          float: none;
+          display: block;
+          text-align: left;
+        }
+        .topnav.responsive .dropdown {
+          float: none;
+        }
+        .topnav.responsive .dropdown-content {
+          position: relative;
+        }
+        .topnav.responsive .dropdown .dropbtn {
+          display: block;
+          width: 100%;
+          text-align: left;
+        }
+      }
+      .grid-container {
+        display: grid;
+        grid-template-columns: auto auto auto;
+        background-color: white;
+
+      }
+      
+      .grid-container2 {
+        display: grid;
+        grid-template-columns: auto auto auto auto;
+        background-color: white;
+      }
+
+      .grid-item {
+        background-color: rgba(255, 255, 255, 0.8);
+        border: 1px blue;
+        padding: 20px;
+        font-size: 30px;
+        text-align: center;
+      }
+      .zoom {
+        transition: transform 0.2s;
+      }
+      .zoom:hover {
+        transform: scale(1.5);
+      }
+      /* Popup box*/
+      * {
+        box-sizing: border-box;
+      }
+
+      .row > .column {
+        padding: 0 8px;
+      }
+
+      .row:after {
+        content: "";
+        display: table;
+        clear: both;
+      }
+
+      .column {
+        float: left;
+        width: 25%;
+      }
+
+      /* The Modal (background) */
+      .modal {
+        display: none;
+        position: fixed;
+        z-index: 1;
+        padding-top: 100px;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        overflow: auto;
+        background-color: rgba(0,0,0,.90);
+      }
+
+      /* Modal Content */
+      .modal-content {
+        position: relative;
+        background-color: #fefefe;
+        border-radius:10px;
+        margin: auto;
+        padding: 0;
+        width: 90%;
+        max-width: 1200px;
+      }
+
+      /* The Close Button */
+      .close {
+        color: white;
+        position: absolute;
+        top: 10px;
+        right: 25px;
+        font-size: 35px;
+        font-weight: bold;
+      }
+
+      .close:hover,
+      .close:focus {
+        color: #999;
+        text-decoration: none;
+        cursor: pointer;
+      }
+
+      .mySlides {
+        display: none;
+      }
+
+      .cursor {
+        cursor: pointer;
+      }
+
+      /* Next & previous buttons */
+      .prev,
+      .next {
+        cursor: pointer;
+        position: absolute;
+        top: 50%;
+        width: auto;
+        padding: 16px;
+        margin-top: -50px;
+        color: white;
+        font-weight: bold;
+        font-size: 20px;
+        transition: 0.6s ease;
+        border-radius: 0 3px 3px 0;
+        user-select: none;
+        -webkit-user-select: none;
+      }
+
+      /* Position the "next button" to the right */
+      .next {
+        right: 0;
+        border-radius: 3px 0 0 3px;
+      }
+
+      /* On hover, add a black background color with a little bit see-through */
+      .prev:hover,
+      .next:hover {
+        background-color: rgba(0, 0, 0, 0.8);
+      }
+
+      /* Number text (1/3 etc) */
+      .numbertext {
+        color: #f2f2f2;
+        font-size: 12px;
+        padding: 8px 12px;
+        position: absolute;
+        top: 0;
+      }
+
+      img {
+        margin-bottom: -4px;
+      }
+
+      .caption-container {
+        text-align: center;
+        background-color: black;
+        padding: 2px 16px;
+        color: white;
+      }
+
+      .demo {
+        opacity: 0.6;
+      }
+
+      .active,
+      .demo:hover {
+        opacity: 1;
+      }
+
+      img.hover-shadow {
+        transition: 0.3s;
+      }
+
+      .hover-shadow:hover {
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+      }
+      button {
+        background-color: white;
+        color: black;
+        border: 2px solid #4CAF50;
+      }
+
+      button:hover {
+        background-color: #4CAF50; /* Green */
+        color: white;
+      }
+
+      p {
+        text-size:100px;
+        text-align:center;
+        font-family:fantasy,arial;
+      }
+    </style>
+  </head>
+  <body>
+
+    <!-- Navigation -->
+    <div class="topnav" id="myTopnav">
+      <a class="inactive" href="index.html" style="padding:0px;">
+        <img
+          style="width:30%; padding-left:0px; padding-right:0px; float:left;"
+          src="https://cdn.glitch.com/6ca40ca6-c18e-443b-ad74-f221a69e4e66%2Ffront1-nobackground.png?v=1625590970352"
+        />
+      </a>
+      <div class="topnav-right">
+        <a href="javascript:void(0);" class="icon" onclick="myFunction()">&#9776;</a>
+        <a href="marketplace.html">Marketplace</a>
+        <a href="aboutUs.html">About Us</a>
+        <a href="aboutPages.html">About the Site</a>
+        <a href="credits.html">Credits</a>
+      </div>
+<!--       <div class="dropdown">
+        <button style="font-family: Georgia, Sans serif;" class="dropbtn">
+          About
+          <i class="fa fa-caret-down"></i>
+        </button>
+        <div class="dropdown-content">
+          <a href="aboutUs.html">About Us</a>
+          <a href="aboutPages.html">About the Site</a>
+          <a href="credits.html">Credits</a>
+        </div>
+      </div> -->
+
+    </div>
+
+    <h1 style="text-align:center; font-family: 'Zen Tokyo Zoo', cursive; font-size:75px;">
+      Marketplace
+    </h1>
+
+    <div style ="border: 1px solid rgba(0, 0, 0, 0.8);">
+      
+    <!--  Entry 1  -->
+    <div class="grid-container">
+
+      
+      <div class="grid-item">
+        <div class="zoom">
+          <model-viewer
+            style="width:100%;"
+            src="https://cdn.glitch.com/6ca40ca6-c18e-443b-ad74-f221a69e4e66%2FBedroom%20.glb?v=1626194707106"
+            alt="Bedroom"
+            ar
+            ar-modes="webxr scene-viewer quick-look"
+            environment-image="neutral"
+            exposure="0.5"
+            auto-rotate
+            camera-controls
+            shadow-intensity="1"
+          >
+          </model-viewer>
+        </div>
+        <br>
+        <div style="text-align:center;">
+          <button style="border-color:rgba(0,0,0,0)">
+          </button>
+          <button
+            onclick="openModal();currentSlide(1)"
+          >
+            <h2>
+              "A Bedroom" - Lisa Kwong
+            </h2>
+          </button>
+        </div>
+      </div>
+
+      <!--  Entry 2  -->
+      <div class="grid-item ">
+        <div class="zoom">
+          <model-viewer
+            style="width:100%"
+            src="https://cdn.glitch.com/6ca40ca6-c18e-443b-ad74-f221a69e4e66%2FBubble%20Milk%20Tea.glb?v=1626194768409"
+            alt="Bubble Milk Tea"
+            ar
+            ar-modes="webxr scene-viewer quick-look"
+            environment-image="neutral"
+            exposure="0.5"
+            auto-rotate
+            camera-controls
+            shadow-intensity="1"
+          >
+          </model-viewer>
+        </div>
+        <br>
+        <div style="text-align:center;">
+          <button
+            onclick="openModal();currentSlide(2)"
+          >
+            <h2>
+              "Bubble Milk Tea" - Lisa Kwong
+            </h2>
+          </button>
+        </div>
+      </div>
+
+<!--       Entry 3 -->
+      <div class="grid-item ">
+        <div class="zoom">
+          <model-viewer
+            style="left:auto;right:auto;width:100%;"
+            src="https://cdn.glitch.com/6ca40ca6-c18e-443b-ad74-f221a69e4e66%2FTelevision%20Set%20from%20the%2090s%20(1).glb?v=1626194910784"
+            alt="Television Set"
+            ar
+            ar-modes="webxr scene-viewer quick-look"
+            environment-image="neutral"
+            exposure="0.5"
+            auto-rotate
+            camera-controls
+            shadow-intensity="1"
+          >
+          </model-viewer>
+        </div>
+        <br>
+        <div style="text-align:center;">
+          <button
+            onclick="openModal();currentSlide(3)"
+          >
+            <h2>
+            "Flatscreens who?" - Nicholas Chan
+            </h2>
+          </button>
+        </div>
+      </div>
+      
+ <!--       Entry 4 -->
+      <div class="grid-item ">
+        <div class="zoom">
+          <model-viewer
+            style="left:auto;right:auto;width:100%;"
+            src="https://cdn.glitch.com/6ca40ca6-c18e-443b-ad74-f221a69e4e66%2Fyoutube.glb?v=1626194912043"
+            alt="Youtube"
+            ar
+            ar-modes="webxr scene-viewer quick-look"
+            environment-image="neutral"
+            exposure="0.5"
+            auto-rotate
+            camera-controls
+            shadow-intensity="1"
+          >
+          </model-viewer>
+        </div>
+        <div style="text-align:center;">
+          <button
+            onclick="openModal();currentSlide(4)"
+          >
+            <h2>
+              "The Ultimate Streaming Service" - Lisa Kwong
+            </h2>
+          </button>
+        </div>
+      </div>
+      
+<!--       Entry 5 -->
+      <div class="grid-item ">
+        <div class="zoom">
+          <model-viewer
+            style="left:auto;right:auto;width:100%;"
+            src="https://cdn.glitch.com/6ca40ca6-c18e-443b-ad74-f221a69e4e66%2FIce-Cream-Cone-Alex.glb?v=1626202283831"
+            alt="Ube Ice Cream COne"
+            ar
+            ar-modes="webxr scene-viewer quick-look"
+            environment-image="neutral"
+            exposure="0.5"
+            auto-rotate
+            camera-controls
+            shadow-intensity="1"
+          >
+          </model-viewer>
+        </div>
+        <div style="text-align:center;">
+          <button
+            onclick="openModal();currentSlide(5)"
+          >
+            <h2>
+              "Ube Ice Cream Cone" - Alex Toohey
+            </h2>
+          </button>
+        </div>
+      </div>
+      
+<!--       Entry 6 -->
+      <div class="grid-item ">
+        <div class="zoom">
+          <model-viewer
+            style="left:auto;right:auto;width:100%;"
+            src="https://cdn.glitch.com/6ca40ca6-c18e-443b-ad74-f221a69e4e66%2FsusKirby-Andrew.glb?v=1625590029170"
+            alt="susKirby"
+            ar
+            ar-modes="webxr scene-viewer quick-look"
+            environment-image="neutral"
+            exposure="0.5"
+            auto-rotate
+            camera-controls
+            shadow-intensity="1"
+          >
+          </model-viewer>
+        </div>
+        <div style="text-align:center;">
+          <button
+            onclick="openModal();currentSlide(6)"
+          >
+            <h2>
+              "Supposed to be Kirby" - Andrew Vuong
+            </h2>
+          </button>
+        </div>
+      </div>
+      
+<!--       Entry 7 -->
+      <div class="grid-item ">
+        <div class="zoom">
+          <model-viewer
+            style="left:auto;right:auto;width:100%;"
+            src="https://cdn.glitch.com/6ca40ca6-c18e-443b-ad74-f221a69e4e66%2FProject%20Name%20(1).glb?v=1626281118769"
+            alt="Amogus"
+            ar
+            ar-modes="webxr scene-viewer quick-look"
+            environment-image="neutral"
+            exposure="0.5"
+            auto-rotate
+            camera-controls
+            shadow-intensity="1"
+          >
+          </model-viewer>
+        </div>
+        <div style="text-align:center;">
+          <button
+            onclick="openModal();currentSlide(7)"
+          >
+            <h2>
+              "Amogus" - Ryan Javier
+            </h2>
+          </button>
+        </div>
+      </div>
+      
+<!--       Entry 8 -->
+      <div class="grid-item ">
+        <div class="zoom">
+          <model-viewer
+            style="left:auto;right:auto;width:100%;"
+            src="https://cdn.glitch.com/6ca40ca6-c18e-443b-ad74-f221a69e4e66%2FWii-Remote-Alex.glb?v=1626202124045"
+            alt="Wii Remote"
+            ar
+            ar-modes="webxr scene-viewer quick-look"
+            environment-image="neutral"
+            exposure="0.5"
+            auto-rotate
+            camera-controls
+            shadow-intensity="1"
+          >
+          </model-viewer>
+        </div>
+        <div style="text-align:center;">
+          <button
+            onclick="openModal();currentSlide(8)"
+          >
+            <h2>
+              "Wii Remote" - Alex Toohey
+            </h2>
+          </button>        
+        </div>
+      </div>
+      
+<!--       Entry 9 -->
+      <div class="grid-item ">
+        <div class="zoom">
+          <model-viewer
+            style="left:auto;right:auto;width:100%;"
+            src="https://cdn.glitch.com/6ca40ca6-c18e-443b-ad74-f221a69e4e66%2FAmberior%20Design.glb?v=1626194553350"
+            alt="Amberior Design"
+            ar
+            ar-modes="webxr scene-viewer quick-look"
+            environment-image="neutral"
+            exposure="0.5"
+            auto-rotate
+            camera-controls
+            shadow-intensity="1"
+          >
+          </model-viewer>
+        </div>
+        <div style="text-align:center;">
+          <button
+            onclick="openModal();currentSlide(9)"
+          >
+            <h2>
+              "Amberior Design" - Lisa Kwong
+            </h2>
+          </button>
+          
+        </div>
+      </div>
+    
+        
+<!--         Entry 10 -->
+        <div class="grid-item ">
+        <div class="zoom">
+          <model-viewer
+            style="left:auto;right:auto;width:100%;"
+            src="https://cdn.glitch.com/6ca40ca6-c18e-443b-ad74-f221a69e4e66%2Fcacti%20(1).glb?v=1626366370064"
+            alt="Cacti"
+            ar
+            ar-modes="webxr scene-viewer quick-look"
+            environment-image="neutral"
+            exposure="0.5"
+            auto-rotate
+            camera-controls
+            shadow-intensity="1"
+          >
+          </model-viewer>
+        </div>
+        <div style="text-align:center;">
+          <button
+            onclick="openModal();currentSlide(10)"
+          >
+            <h2>
+              "cacti(1)" - Claire Beaudin
+            </h2>
+          </button>
+          
+        </div>
+      </div>
+        
+<!--         entry 11 -->
+        <div class="grid-item ">
+        <div class="zoom">
+          <model-viewer
+            style="left:auto;right:auto;width:100%;"
+            src="https://cdn.glitch.com/6ca40ca6-c18e-443b-ad74-f221a69e4e66%2Fcacti.glb?v=1626366449626"
+            alt="cacti"
+            ar
+            ar-modes="webxr scene-viewer quick-look"
+            environment-image="neutral"
+            exposure="0.5"
+            auto-rotate
+            camera-controls
+            shadow-intensity="1"
+          >
+          </model-viewer>
+        </div>
+        <div style="text-align:center;">
+          <button
+            onclick="openModal();currentSlide(11)"
+          >
+            <h2>
+              "cacti" - Claire Beaudin
+            </h2>
+          </button>
+          
+        </div>
+      </div>
+        
+<!--         entry 12 -->
+        
+        <div class="grid-item ">
+        <div class="zoom">
+          <model-viewer
+            style="left:auto;right:auto;width:100%;"
+            src="https://cdn.glitch.com/6ca40ca6-c18e-443b-ad74-f221a69e4e66%2Fiphone.glb?v=1626366453270"
+            alt="iPhone"
+            ar
+            ar-modes="webxr scene-viewer quick-look"
+            environment-image="neutral"
+            exposure="0.5"
+            auto-rotate
+            camera-controls
+            shadow-intensity="1"
+          >
+          </model-viewer>
+        </div>
+        <div style="text-align:center;">
+          <button
+            onclick="openModal();currentSlide(12)"
+          >
+            <h2>
+              "iPhone" - Lisa Kwong
+            </h2>
+          </button>
+          
+        </div>
+      </div>
+        
+      </div>
+      
+    <div class ="grid-container2"> 
+      
+<!--       Entry 13 -->
+      <div class="grid-item ">
+        <div class="zoom">
+          <img src="https://cdn.glitch.com/6ca40ca6-c18e-443b-ad74-f221a69e4e66%2Fcachey_GB.png?v=1626281164112" alt="Gameboy" style="width:300px;height300px;margin-left: auto;margin-right: auto;">
+        </div>
+        <div style="text-align:center;">
+          <button
+            onclick="openModal();currentSlide(13)"
+          >
+            <h2>
+              "Gameboy" - Cachey Tatum
+            </h2>
+          </button>
+          
+        </div>
+      </div>
+      
+<!--       Entry 14 -->
+        <div class="grid-item ">
+        <div class="zoom">
+        <img src="https://cdn.glitch.com/6ca40ca6-c18e-443b-ad74-f221a69e4e66%2F1979tv.gif?v=1626281203638" alt="1979-color-tv" style="width:300px">
+        </div>
+        <div style="text-align:center;">
+          <button
+            onclick="openModal();currentSlide(14)"
+          >
+            <h2>
+              "1979 Color TV" - Cachey Tatum & Nick Chan
+            </h2>
+          </button>
+          
+        </div>
+      </div>
+        
+<!--       Entry 15 -->
+        <div class="grid-item ">
+        <div class="zoom">
+        <img src="https://cdn.glitch.com/6ca40ca6-c18e-443b-ad74-f221a69e4e66%2Fpixil-gif-drawing.gif?v=1626284119107" alt="B-Ballin" style="width:300px">
+        </div>
+        <div style="text-align:center;">
+          <button
+            onclick="openModal();currentSlide(15)"
+          >
+            <h2>
+              "B-Ballin" - Ryan Javier
+            </h2>
+          </button>
+          
+        </div>
+      </div>
+      
+<!--       Entry 16 -->
+        <div class="grid-item ">
+        <div class="zoom">
+        <img src="https://cdn.glitch.com/6ca40ca6-c18e-443b-ad74-f221a69e4e66%2Ffutbol.gif?v=1626284264995" alt="Futbol" style="width:300px">
+        </div>
+        <div style="text-align:center;">
+          <button
+            onclick="openModal();currentSlide(16)"
+          >
+            <h2>
+              "Futbol" - Nick Chan
+            </h2>
+          </button>
+          
+        </div>
+      </div>
+      
+      
+    </div>
+    
+    </div>
+    
+<!--   Light Box Effect -->
+<div id="myModal" class="modal">
+  <span class="close cursor" onclick="closeModal()">&times;</span>
+  <div class="modal-content">
+
+<!--     Slides 1 -->
+    <div class="mySlides">
+      <div class="numbertext">1</div>
+      <model-viewer
+            style="height:500px;width:100%;left:auto;right:auto;"
+            src="https://cdn.glitch.com/6ca40ca6-c18e-443b-ad74-f221a69e4e66%2FBedroom%20.glb?v=1626194707106"
+            alt="Bedroom"
+            ar
+            ar-modes="webxr scene-viewer quick-look"
+            environment-image="neutral"
+            exposure="0.5"
+            auto-rotate
+            camera-controls
+            shadow-intensity="1"
+          >
+      </model-viewer>
+      <p>
+        "A Bedroom" by Lisa Kwong
+      </p>
+    </div>
+
+<!--     slides 2 -->
+    <div class="mySlides">
+      <div class="numbertext">2</div>
+      <model-viewer
+            style="height:500px;width:100%;left:auto;right:auto;"
+            src="https://cdn.glitch.com/6ca40ca6-c18e-443b-ad74-f221a69e4e66%2FBubble%20Milk%20Tea.glb?v=1626194768409"
+            alt="Bubble Milk Tea"
+            ar
+            ar-modes="webxr scene-viewer quick-look"
+            environment-image="neutral"
+            exposure="0.5"
+            auto-rotate
+            camera-controls
+            shadow-intensity="1"
+          >
+      </model-viewer>
+      <p>
+          "Bubble Milk Tea" by Lisa Kwong
+      </p>
+    </div>
+
+<!--     slides 3 -->
+    <div class="mySlides">
+      <div class="numbertext">3</div>
+      <div style="justify-content: center;">
+        <model-viewer
+              style="height:500px;width:100%;left:auto;right:auto;"
+              src="https://cdn.glitch.com/6ca40ca6-c18e-443b-ad74-f221a69e4e66%2FTelevision%20Set%20from%20the%2090s%20(1).glb?v=1626194910784"
+              alt="Television Set"
+              ar
+              ar-modes="webxr scene-viewer quick-look"
+              environment-image="neutral"
+              exposure="0.5"
+              auto-rotate
+              camera-controls
+              shadow-intensity="1"
+            >
+        </model-viewer>
+        <p>
+          "Flatscreens Who?" by Nicholas Chan
+        </p>
+      </div>
+    </div>
+    
+<!--     slides 4 -->
+    <div class="mySlides">
+      <div class="numbertext">4</div>
+      <div style="justify-content: center;">
+        <model-viewer
+              style="height:500px;width:100%;left:auto;right:auto;"
+              src="https://cdn.glitch.com/6ca40ca6-c18e-443b-ad74-f221a69e4e66%2Fyoutube.glb?v=1626194912043"
+              alt="Youtube"
+              ar
+              ar-modes="webxr scene-viewer quick-look"
+              environment-image="neutral"
+              exposure="0.5"
+              auto-rotate
+              camera-controls
+              shadow-intensity="1"
+            >
+        </model-viewer>
+        <p>
+          "The Ultimate Streaming Service" by Lisa Kwong
+        </p>
+      </div>
+    </div>
+
+<!--     slides 5 -->
+    <div class="mySlides">
+      <div class="numbertext">5</div>
+      <div style="justify-content: center;">
+        <model-viewer
+              style="height:500px;width:100%;left:auto;right:auto;"
+              src="https://cdn.glitch.com/6ca40ca6-c18e-443b-ad74-f221a69e4e66%2FIce-Cream-Cone-Alex.glb?v=1626202283831"
+              alt="Ube Ice Cream Cone"
+              ar
+              ar-modes="webxr scene-viewer quick-look"
+              environment-image="neutral"
+              exposure="0.5"
+              auto-rotate
+              camera-controls
+              shadow-intensity="1"
+            >
+        </model-viewer>
+        <p>
+          "Ube Ice Cream Cone" by Alex Toohey
+        </p>
+      </div>
+    </div>
+  
+<!--     slides 6 -->
+    <div class="mySlides">
+      <div class="numbertext">6</div>
+      <div style="justify-content: center;">
+        <model-viewer
+              style="height:500px;width:100%;left:auto;right:auto;"
+              src="https://cdn.glitch.com/6ca40ca6-c18e-443b-ad74-f221a69e4e66%2FsusKirby-Andrew.glb?v=1625590029170"
+              alt="susKirby"
+              ar
+              ar-modes="webxr scene-viewer quick-look"
+              environment-image="neutral"
+              exposure="0.5"
+              auto-rotate
+              camera-controls
+              shadow-intensity="1"
+            >
+        </model-viewer>
+        <p>
+          "Supposed to be Kirby" by Andrew Vuong
+        </p>
+      </div>
+    </div>
+  
+<!--     slides 7 -->
+    <div class="mySlides">
+      <div class="numbertext">7</div>
+      <div style="justify-content: center;">
+        <model-viewer
+              style="height:500px;width:100%;left:auto;right:auto;"
+              src="https://cdn.glitch.com/6ca40ca6-c18e-443b-ad74-f221a69e4e66%2FProject%20Name%20(1).glb?v=1626281118769"
+              alt="Amogus"
+              ar
+              ar-modes="webxr scene-viewer quick-look"
+              environment-image="neutral"
+              exposure="0.5"
+              auto-rotate
+              camera-controls
+              shadow-intensity="1"
+            >
+        </model-viewer>
+        <p>
+          "Amogus" by Ryan Javier
+        </p>
+      </div>
+    </div>
+    
+<!--     slides 8 -->
+    <div class="mySlides">
+      <div class="numbertext">8</div>
+      <div style="justify-content: center;">
+        <model-viewer
+              style="height:500px;width:100%;left:auto;right:auto;"
+              src="https://cdn.glitch.com/6ca40ca6-c18e-443b-ad74-f221a69e4e66%2FWii-Remote-Alex.glb?v=1626202124045"
+              alt="Wii Remote"
+              ar
+              ar-modes="webxr scene-viewer quick-look"
+              environment-image="neutral"
+              exposure="0.5"
+              auto-rotate
+              camera-controls
+              shadow-intensity="1"
+            >
+        </model-viewer>
+        <p>
+          "Wii Remote" by Alex Toohey
+        </p>
+      </div>
+    </div>
+    
+<!--     slides 9 -->
+    <div class="mySlides">
+      <div class="numbertext">9</div>
+      <div style="justify-content: center;">
+        <model-viewer
+              style="height:500px;width:100%;left:auto;right:auto;"
+              src="https://cdn.glitch.com/6ca40ca6-c18e-443b-ad74-f221a69e4e66%2FAmberior%20Design.glb?v=1626194553350"
+              alt="Amberior Design"
+              ar
+              ar-modes="webxr scene-viewer quick-look"
+              environment-image="neutral"
+              exposure="0.5"
+              auto-rotate
+              camera-controls
+              shadow-intensity="1"
+            >
+        </model-viewer>
+        <p>
+          "Amberior Design" by Lisa Kwong
+        </p>
+      </div>
+    </div>
+    
+    <!--     slides 10 -->
+    <div class="mySlides">
+      <div class="numbertext">10</div>
+      <div style="justify-content: center;">
+        <model-viewer
+              style="height:500px;width:100%;left:auto;right:auto;"
+              src="https://cdn.glitch.com/6ca40ca6-c18e-443b-ad74-f221a69e4e66%2Fcacti%20(1).glb?v=1626366370064"
+              alt="Cacti"
+              ar
+              ar-modes="webxr scene-viewer quick-look"
+              environment-image="neutral"
+              exposure="0.5"
+              auto-rotate
+              camera-controls
+              shadow-intensity="1"
+            >
+        </model-viewer>
+        <p>
+          "Cacti(1) - Claire Beaudin"
+        </p>
+      </div>
+    </div>
+    
+<!-- slides 11 -->
+    <div class="mySlides">
+      <div class="numbertext">11</div>
+      <div style="justify-content: center;">
+        <model-viewer
+              style="height:500px;width:100%;left:auto;right:auto;"
+              src="https://cdn.glitch.com/6ca40ca6-c18e-443b-ad74-f221a69e4e66%2FBubble%20Milk%20Tea.glb?v=1626194768409"
+              alt="Bubble Milk Tea"
+              ar
+              ar-modes="webxr scene-viewer quick-look"
+              environment-image="neutral"
+              exposure="0.5"
+              auto-rotate
+              camera-controls
+              shadow-intensity="1"
+            >
+        </model-viewer>
+        <p>
+          Information
+        </p>
+      </div>
+    </div>
+    
+<!--     slides 12 -->
+    <div class="mySlides">
+      <div class="numbertext">12</div>
+      <div style="justify-content: center;">
+        <model-viewer
+              style="height:500px;width:100%;left:auto;right:auto;"
+              src="https://cdn.glitch.com/6ca40ca6-c18e-443b-ad74-f221a69e4e66%2Fiphone.glb?v=1626366453270"
+              alt="iPhone"
+              ar
+              ar-modes="webxr scene-viewer quick-look"
+              environment-image="neutral"
+              exposure="0.5"
+              auto-rotate
+              camera-controls
+              shadow-intensity="1"
+            >
+        </model-viewer>
+        <p>
+          "iPhone" - Lisa Kwong
+        </p>
+      </div>
+    </div>
+    
+
+<!--     slides 13-->
+    <div class="mySlides">
+      <div class="numbertext">13</div>
+      <div style="justify-content: center;">
+        <img src="https://cdn.glitch.com/6ca40ca6-c18e-443b-ad74-f221a69e4e66%2Fcachey_GB.png?v=1626281164112" alt="Gameboy" style="width:100%;margin-left: auto;margin-right: auto;">
+        <p>
+          "Gameboy" - Cachey Tatum
+        </p>
+      </div>
+    </div>
+    
+<!--     slides 14 -->
+    <div class="mySlides">
+      <div class="numbertext">14</div>
+      <div style="justify-content: center;">
+        <img src="https://cdn.glitch.com/6ca40ca6-c18e-443b-ad74-f221a69e4e66%2F1979tv.gif?v=1626281203638" alt="1979-color-tv">
+        <p>
+          "1979 Color TV" - Cachey Tatum
+        </p>
+      </div>
+    </div>
+    
+
+<!--     slides 15 -->
+    <div class="mySlides">
+      <div class="numbertext">15</div>
+      <div style="justify-content: center;">
+        <img src="https://cdn.glitch.com/6ca40ca6-c18e-443b-ad74-f221a69e4e66%2Fpixil-gif-drawing.gif?v=1626284119107" alt="B-Ball" style="width:100%">
+        <p>
+          "B-Ballin" - Ryan Javier
+        </p>
+      </div>
+    </div>
+
+<!--     slides 16 -->
+    <div class="mySlides">
+      <div class="numbertext">16</div>
+      <div style="justify-content: center; width:60%; margin: auto; background-color:rgba(0,0,0,0)">
+        <img src="https://cdn.glitch.com/6ca40ca6-c18e-443b-ad74-f221a69e4e66%2Ffutbol.gif?v=1626284264995" alt="Futbol" style="width:100%">
+        <p>
+          "Futbol" - Nick Chan
+        </p>
+      </div>
+    </div>
+  
+    
+    <div class="caption-container">
+      <p id="caption"></p>
+    </div>
+
+  </div>
+</div>
+    
+    <br />
+    <a href="index.html"
+      ><img
+        style="display: block; margin-left:auto; margin-right:auto; margin-top: 10px; width:5%; margin-bottom: 10px;"
+        src="https://cdn.glitch.com/6ca40ca6-c18e-443b-ad74-f221a69e4e66%2Ffront1-nobackground.png?v=1625590970352"
+        alt="Logo"
+    /></a>
+    <h1
+      style="margin-left:200px; margin-right:200px;background-color:white; opacity:0.5; text-align:center;font-family: 'Zen Loop', cursive; font-size: medium;"
+    >
+      Brought to you by Google CSI Tech Cohort 2021©
+    </h1>
+    
+    <script>
+      function openModal() {
+        document.getElementById("myModal").style.display = "block";
+      }
+
+      function closeModal() {
+        document.getElementById("myModal").style.display = "none";
+      }
+
+      var slideIndex = 1;
+      showSlides(slideIndex);
+
+      function currentSlide(n) {
+        showSlides(slideIndex = n);
+      }
+
+      function showSlides(n) {
+        var i;
+        var slides = document.getElementsByClassName("mySlides");
+        var dots = document.getElementsByClassName("demo");
+        var captionText = document.getElementById("caption");
+        if (n > slides.length) {slideIndex = 1}
+        if (n < 1) {slideIndex = slides.length}
+        for (i = 0; i < slides.length; i++) {
+            slides[i].style.display = "none";
+        }
+        for (i = 0; i < dots.length; i++) {
+            dots[i].className = dots[i].className.replace(" active", "");
+        }
+        slides[slideIndex-1].style.display = "block";
+        dots[slideIndex-1].className += " active";
+        captionText.innerHTML = dots[slideIndex-1].alt;
+      }
+      </script>
+  </body>
+</html>
